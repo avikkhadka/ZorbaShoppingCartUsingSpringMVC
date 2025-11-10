@@ -1,45 +1,42 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page isELIgnored="false" %>
+
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
     <title>Add Product</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background: #f5f6fa;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+            background-color: #f2f2f2;
         }
 
         .container {
-            background: #fff;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0px 0px 20px rgba(0,0,0,0.1);
             width: 400px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 15px rgba(0,0,0,0.2);
         }
 
         h2 {
             text-align: center;
-            margin-bottom: 30px;
             color: #333;
         }
 
-        label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-
-        input[type=text], input[type=number] {
+        input[type=text], input[type=number], select {
             width: 100%;
             padding: 10px;
-            margin-bottom: 20px;
+            margin: 8px 0 20px 0;
             border: 1px solid #ccc;
-            border-radius: 5px;
+            border-radius: 4px;
+        }
+
+        select {
+            background-color: #fff;
+            color: #333;
         }
 
         input[type=submit] {
@@ -47,9 +44,9 @@
             padding: 12px;
             background-color: #4CAF50;
             border: none;
+            border-radius: 4px;
             color: white;
-            font-size: 16px;
-            border-radius: 5px;
+            font-weight: bold;
             cursor: pointer;
         }
 
@@ -58,8 +55,8 @@
         }
 
         .message {
-            text-align: center;
             color: green;
+            text-align: center;
             margin-bottom: 20px;
         }
     </style>
@@ -73,17 +70,24 @@
     </c:if>
 
     <form action="${pageContext.request.contextPath}/product/add" method="post">
-        <label>Name:</label>
-        <input type="text" name="name" required/>
+        <label>Product Name</label>
+        <input type="text" name="name" placeholder="Enter product name" required/>
 
-        <label>Type:</label>
-        <input type="text" name="type" required/>
+        <label>Category</label>
+        <select name="type" required>
+            <option value="">Select Category</option>
+            <option value="Grocery">Grocery</option>
+            <option value="Dairy">Dairy</option>
+            <option value="Cosmetics">Cosmetics</option>
+            <option value="Fashion">Fashion</option>
+            <option value="Electronics">Electronics</option>
+        </select>
 
-        <label>Available Quantity:</label>
-        <input type="number" name="availableQuantity" min="1" required/>
+        <label>Available Quantity</label>
+        <input type="number" name="availableQuantity" placeholder="Enter quantity" min="1" required/>
 
-        <label>Price:</label>
-        <input type="number" name="price" step="0.01" min="0" required/>
+        <label>Price</label>
+        <input type="number" name="price" placeholder="Enter price" step="0.01" min="0" required/>
 
         <input type="submit" value="Add Product"/>
     </form>

@@ -3,64 +3,98 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
     <title>Product List</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background: #f0f2f5;
-            margin: 0;
-            padding: 0;
+            background-color: #f2f2f2;
         }
+
         .container {
-            width: 80%;
-            margin: 40px auto;
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            width: 800px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 15px rgba(0,0,0,0.2);
         }
+
         h2 {
             text-align: center;
-            margin-bottom: 20px;
             color: #333;
         }
+
         table {
             width: 100%;
             border-collapse: collapse;
+            margin-top: 20px;
         }
+
         th, td {
-            border: 1px solid #ddd;
             padding: 12px;
-            text-align: left;
+            border: 1px solid #ccc;
+            text-align: center;
         }
+
         th {
-            background-color: #007bff;
+            background-color: #4CAF50;
             color: white;
         }
+
         tr:nth-child(even) {
             background-color: #f9f9f9;
+        }
+
+        .message {
+            text-align: center;
+            color: green;
+            margin-bottom: 20px;
+        }
+
+        a.add-product {
+            display: inline-block;
+            margin-bottom: 15px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        a.add-product:hover {
+            background-color: #45a049;
         }
     </style>
 </head>
 <body>
 <div class="container">
     <h2>Product List</h2>
+
+    <c:if test="${not empty message}">
+        <div class="message">${message}</div>
+    </c:if>
+
+    <a href="${pageContext.request.contextPath}/product/add" class="add-product">Add New Product</a>
+
     <table>
         <thead>
         <tr>
             <th>ID</th>
-            <th>Type</th>
             <th>Name</th>
-            <th>Quantity</th>
+            <th>Category</th>
+            <th>Available Quantity</th>
+            <th>Price</th>
         </tr>
         </thead>
         <tbody>
         <c:forEach var="product" items="${products}">
             <tr>
                 <td>${product.id}</td>
-                <td>${product.type}</td>
                 <td>${product.name}</td>
+                <td>${product.type}</td>
                 <td>${product.availableQuantity}</td>
+                <td>${product.price}</td>
             </tr>
         </c:forEach>
         </tbody>
