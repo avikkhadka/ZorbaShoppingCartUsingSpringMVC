@@ -29,6 +29,8 @@ public class ProductController {
         redirectAttributes.addFlashAttribute("message", "Product has been added successfully!");
         return "redirect:/product/list";
     }
+
+    //getting all the products
     @GetMapping("/list")
     public String listProducts(@RequestParam(value = "type",required = false) String type, Model model)
     {
@@ -38,5 +40,18 @@ public class ProductController {
             model.addAttribute("products", productService.getAllProducts());
         }
         return "product_list";
+    }
+    //product single view
+    @GetMapping("/view/{id}")
+    public String viewProduct(@PathVariable("id") Long id, Model model)
+    {
+        Product product=productService.getProductById(id);
+        if(product==null)
+        {
+            model.addAttribute("message","Product not found");
+            return "redirect:/product/list";
+        }
+        model.addAttribute("product", product);
+        return "product_view";
     }
 }

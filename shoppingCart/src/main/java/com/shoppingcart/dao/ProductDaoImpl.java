@@ -1,6 +1,7 @@
 package com.shoppingcart.dao;
 
 import com.shoppingcart.model.Product;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -31,6 +32,16 @@ public class ProductDaoImpl implements ProductDao {
                 .createQuery("from Product where type = :type", Product.class)
                 .setParameter("type", type)
                 .getResultList();
+    }
+    @Override
+    public Product getProductById(Long id)
+    {
+       return sessionFactory.getCurrentSession()
+                .createQuery("from Product where id=:id",Product.class)
+                .setParameter("id",id)
+                .uniqueResult();
+
+
     }
 
 

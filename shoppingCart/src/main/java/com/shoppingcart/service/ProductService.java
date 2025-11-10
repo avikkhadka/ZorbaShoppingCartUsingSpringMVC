@@ -25,5 +25,9 @@ public class ProductService {
     public List<Product> getProductsByType(String type) {
         return productDao.getProductsByType(type);
     }
+    public Product getProductById(Long id)
+    {
+        return productDao.getProductById(id);
+    }
 }
 

@@ -73,6 +73,19 @@
             background-color: #4CAF50;
             color: white;
         }
+
+        .action-btn {
+            background-color: #28a745;
+            color: white;
+            padding: 6px 12px;
+            border: none;
+            border-radius: 4px;
+            text-decoration: none;
+        }
+
+        .action-btn:hover {
+            background-color: #218838;
+        }
     </style>
 </head>
 <body>
@@ -107,6 +120,7 @@
             <th>Category</th>
             <th>Available Quantity</th>
             <th>Price</th>
+            <th>Action</th>
         </tr>
         </thead>
         <tbody>
@@ -117,6 +131,11 @@
                 <td>${product.type}</td>
                 <td>${product.availableQuantity}</td>
                 <td>${product.price}</td>
+                <td>
+                    <a href="${pageContext.request.contextPath}/product/view/${product.id}" class="action-btn">
+                        Add to Cart
+                    </a>
+                </td>
             </tr>
         </c:forEach>
         </tbody>
