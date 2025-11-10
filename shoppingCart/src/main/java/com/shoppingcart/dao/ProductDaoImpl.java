@@ -24,4 +24,15 @@ public class ProductDaoImpl implements ProductDao {
         return sessionFactory.getCurrentSession().createQuery("From Product",Product.class).list();
     }
 
+
+    @Override
+    public List<Product> getProductsByType(String type) {
+        return sessionFactory.getCurrentSession()
+                .createQuery("from Product where type = :type", Product.class)
+                .setParameter("type", type)
+                .getResultList();
+    }
+
+
+
 }

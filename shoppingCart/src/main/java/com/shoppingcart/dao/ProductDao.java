@@ -8,5 +8,7 @@ public interface ProductDao {
     void saveProduct(Product product);
     List<Product> getAllProducts();
 
+    List<Product> getProductsByType(String type);
+
 
 }

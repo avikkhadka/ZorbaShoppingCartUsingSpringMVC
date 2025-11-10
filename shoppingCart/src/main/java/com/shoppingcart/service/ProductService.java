@@ -22,5 +22,8 @@ public class ProductService {
     {
         return productDao.getAllProducts();
     }
+    public List<Product> getProductsByType(String type) {
+        return productDao.getProductsByType(type);
+    }
 }
 

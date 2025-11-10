@@ -30,9 +30,13 @@ public class ProductController {
         return "redirect:/product/list";
     }
     @GetMapping("/list")
-    public String listProducts(Model model)
+    public String listProducts(@RequestParam(value = "type",required = false) String type, Model model)
     {
-        model.addAttribute("products",productService.getAllProducts());
+        if (type != null && !type.isEmpty()) {
+            model.addAttribute("products", productService.getProductsByType(type));
+        } else {
+            model.addAttribute("products", productService.getAllProducts());
+        }
         return "product_list";
     }
 }
