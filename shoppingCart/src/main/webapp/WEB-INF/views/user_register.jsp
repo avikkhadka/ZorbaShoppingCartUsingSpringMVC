@@ -69,6 +69,12 @@
     <form action="${pageContext.request.contextPath}/user/register" method="post">
         <label>Username</label>
         <input type="text" name="username" required/>
+         <label>Select Roles:</label><br />
+         <c:forEach var="role" items="${roles}">
+
+             <input type="checkbox" name="roles" value="${role.id}"/> ${role.name}<br/>
+         </c:forEach>
+
 
         <label>Email</label>
         <input type="email" name="email" required/>
