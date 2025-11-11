@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
 @RequestMapping("/user")
 
@@ -41,14 +43,15 @@ public class UserController {
     }
     @PostMapping("/login")
 
-    public String loginCheck(@ModelAttribute User user, Model model)
+    public String loginCheck(@ModelAttribute User user, Model model, HttpSession session)
     {
         User existingUser=userService.checkLoginCredentials(user.getEmail(),user.getPassword());
 
         if(existingUser!=null)
         {
-            model.addAttribute("message","Login successfull");
-            return "user_dashbord";
+
+            session.setAttribute("loggedInUser",existingUser);
+            return "redirect:/product/list";
         }
         else
         {

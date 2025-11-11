@@ -124,6 +124,9 @@
         </tr>
         </thead>
         <tbody>
+         <c:if test="${not empty sessionScope.loggedInUser}">
+                <p>Welcome, ${sessionScope.loggedInUser.username}!</p>
+            </c:if>
         <c:forEach var="product" items="${products}">
             <tr>
                 <td>${product.id}</td>
