@@ -69,19 +69,6 @@ public class UserController {
         return "user_login";
     }
 
-    // ---------------- LOGIN VALIDATION ----------------
-    @PostMapping("/login")
-    public String loginCheck(@ModelAttribute User user, Model model, HttpSession session) {
-        User existingUser = userService.checkLoginCredentials(user.getEmail(), user.getPassword());
-
-        if (existingUser != null) {
-            session.setAttribute("loggedInUser", existingUser);
-            return "redirect:/product/list";
-        } else {
-            model.addAttribute("message", "Invalid email or password!");
-            return "user_login";
-        }
-    }
 
     // ---------------- LOGOUT ----------------
     @GetMapping("/logout")

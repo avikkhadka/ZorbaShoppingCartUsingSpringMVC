@@ -21,7 +21,8 @@ public class HibernateConfig {
     public DataSource getDataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/spring_mvc_shopping_cart?useSSL=false");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/spring_mvc_shopping_cart?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC");
+
         dataSource.setUsername("root");      // replace with your DB username
         dataSource.setPassword("echoRoot");  // replace with your DB password
         return dataSource;

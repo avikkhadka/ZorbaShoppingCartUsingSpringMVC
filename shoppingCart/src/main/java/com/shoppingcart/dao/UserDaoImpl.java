@@ -21,14 +21,22 @@ public class UserDaoImpl implements UserDao {
         session.save(user);
     }
 
-    @Override
+//    @Override
+//    @Transactional
+//    public User checkLoginCredentials(String email, String password) {
+//        Session session=sessionFactory.getCurrentSession();
+//        return session.createQuery(
+//                        "FROM User WHERE email = :email AND password = :pwd", User.class)
+//                .setParameter("email", email)
+//                .setParameter("pwd", password)
+//                .uniqueResult();
+//    }
     @Transactional
-    public User checkLoginCredentials(String email, String password) {
-        Session session=sessionFactory.getCurrentSession();
-        return session.createQuery(
-                        "FROM User WHERE email = :email AND password = :pwd", User.class)
+    @Override
+    public User getUserByEmail(String email) {
+        Session session = sessionFactory.getCurrentSession();
+        return session.createQuery("FROM User WHERE email=:email", User.class)
                 .setParameter("email", email)
-                .setParameter("pwd", password)
                 .uniqueResult();
     }
 }
