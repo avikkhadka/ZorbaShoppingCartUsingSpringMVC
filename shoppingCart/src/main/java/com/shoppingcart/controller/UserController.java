@@ -70,6 +70,19 @@ public class UserController {
     }
 
 
+//    //testing login
+//    @PostMapping("/login")
+//    @ResponseBody
+//    public String loginTest()
+//    {
+//        System.out.println("Login still being checked from controller");
+//        return "login still from controller";
+//
+//
+//    }
+
+    //testing login ends
+
     // ---------------- LOGOUT ----------------
     @GetMapping("/logout")
     public String logout(HttpSession session) {

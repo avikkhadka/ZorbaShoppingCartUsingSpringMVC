@@ -66,10 +66,13 @@ public class SecurityConfig {
                 .and()
                 .formLogin()
                 .loginPage("/user/login")
+                .loginProcessingUrl("/user/login")
                 .usernameParameter("email")
                 .passwordParameter("password")
                 .defaultSuccessUrl("/product/list", true)
+                .failureUrl("/user/login?error=true")
                 .permitAll()
+
 
                 .and()
                 .logout()

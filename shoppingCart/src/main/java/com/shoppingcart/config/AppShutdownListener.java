@@ -22,11 +22,11 @@ public class AppShutdownListener implements ServletContextListener {
     public void contextDestroyed(ServletContextEvent sce) {
         System.out.println("Shutting down web application... cleaning up JDBC resources.");
 
-        // 1️⃣ Stop MySQL Abandoned Connection Cleanup Thread
+
         AbandonedConnectionCleanupThread.checkedShutdown();
         System.out.println("MySQL abandoned cleanup thread stopped.");
 
-        // 2️⃣ Deregister JDBC Drivers
+
         Enumeration<Driver> drivers = DriverManager.getDrivers();
         while (drivers.hasMoreElements()) {
             Driver driver = drivers.nextElement();
