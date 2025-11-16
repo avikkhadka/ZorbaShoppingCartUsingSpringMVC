@@ -33,7 +33,7 @@ public class MyUserDetailsService implements UserDetailsService {
         // Convert roles to GrantedAuthority
         Set<GrantedAuthority> authorities = new HashSet<>();
         for (Role role : user.getRoles()) {
-            authorities.add(new SimpleGrantedAuthority("ROLE_" + role.getName())); // ROLE_ADMIN, ROLE_VENDOR, etc.
+            authorities.add(new SimpleGrantedAuthority("ROLE_" + role.getName().toUpperCase())); // ROLE_ADMIN, ROLE_VENDOR, etc.
         }
 
         // Return Spring Security User

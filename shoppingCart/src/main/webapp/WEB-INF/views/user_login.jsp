@@ -1,5 +1,4 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri= "http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <%@ page isELIgnored="false" %>
 
@@ -7,7 +6,9 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>User Registration</title>
+    <title>User Login</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -60,12 +61,15 @@
 </head>
 <body>
 <div class="container">
-    <h2>User Registration</h2>
 
-    <c:if test="${not empty message}">
-        <div class="message">${message}</div>
+
+
+    <c:if test="${not empty errorMsg}">
+        <div class="alert alert-danger">${errorMsg}</div>
     </c:if>
-
+    <c:if test="${not empty message}">
+        <div class="alert alert-success">${message}</div>
+    </c:if>
     <form action="${pageContext.request.contextPath}/user/login" method="post">
 
          <label>Email</label>

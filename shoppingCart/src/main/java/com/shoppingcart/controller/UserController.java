@@ -59,29 +59,22 @@ public class UserController {
         model.addAttribute("message", "User registered successfully!");
         model.addAttribute("user", new User());
         model.addAttribute("roles", roleService.getAllRoles());
-        return "user_register";
+        return "user_login";
     }
 
     // ---------------- LOGIN PAGE ----------------
     @GetMapping("/login")
-    public String showLoginForm(Model model) {
-        model.addAttribute("user", new User());
-        return "user_login";
+    public String showLoginForm(@RequestParam(value = "error", required = false) String error,
+                                Model model) {
+        if (error != null) {
+            model.addAttribute("errorMsg", "Invalid username or password");
+        }
+
+        return "redirect:/user/login";
     }
 
 
-//    //testing login
-//    @PostMapping("/login")
-//    @ResponseBody
-//    public String loginTest()
-//    {
-//        System.out.println("Login still being checked from controller");
-//        return "login still from controller";
-//
-//
-//    }
 
-    //testing login ends
 
     // ---------------- LOGOUT ----------------
     @GetMapping("/logout")

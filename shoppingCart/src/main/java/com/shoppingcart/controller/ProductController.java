@@ -3,6 +3,7 @@ package com.shoppingcart.controller;
 import com.shoppingcart.model.Product;
 import com.shoppingcart.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +15,7 @@ public class ProductController {
     @Autowired
     private ProductService productService;
     @GetMapping("/add")
+
     public String showAddProductForm(Model model)
     {
         model.addAttribute("product",new Product());
@@ -21,6 +23,7 @@ public class ProductController {
     }
 
     @PostMapping("/add")
+
 
     public String saveProduct(@ModelAttribute Product product, RedirectAttributes redirectAttributes)
     {
@@ -54,4 +57,13 @@ public class ProductController {
         model.addAttribute("product", product);
         return "product_view";
     }
+
+
+    //for authentication error
+    @GetMapping("/access-denied")
+    public String accessDenied() {
+        return "accessDenied"; // JSP page under /WEB-INF/views
+    }
+
+
 }

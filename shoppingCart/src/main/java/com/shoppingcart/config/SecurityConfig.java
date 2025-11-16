@@ -42,10 +42,10 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests()
 
-                // PUBLIC PAGES (VERY IMPORTANT)
+                // accessible without any restrictions
                 .requestMatchers(
                         "/user/register",
-                        "/user/save",     // required for registration POST
+                        "/user/save",
                         "/user/login",
                         "/css/**",
                         "/js/**",
@@ -57,6 +57,11 @@ public class SecurityConfig {
                 // ROLE-BASED SECURED PAGES
                 .requestMatchers("/admin/**").hasRole("ADMIN")
                 .requestMatchers("/vendor/**").hasRole("VENDOR")
+
+                // AUTHENTICATED PAGES
+                .requestMatchers("/product/add").hasAnyRole("ADMIN", "VENDOR") // only admin/vendor can add product
+
+
 
                 // AUTHENTICATED PAGES
                 .requestMatchers("/product/**", "/cart/**").authenticated()
@@ -79,6 +84,9 @@ public class SecurityConfig {
                 .logoutUrl("/user/logout")
                 .logoutSuccessUrl("/user/login?logout")
                 .permitAll()
+                .and()
+                .exceptionHandling()
+                .accessDeniedPage("/product/access-denied")
 
                 .and()
                 .csrf().disable(); // disable temporarily during development
