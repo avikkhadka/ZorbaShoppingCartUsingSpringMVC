@@ -29,6 +29,7 @@
         .top-bar {
             display: flex;
             justify-content: space-between;
+            align-items: center; /* vertically center items */
             margin-bottom: 20px;
         }
 
@@ -86,6 +87,21 @@
         .action-btn:hover {
             background-color: #218838;
         }
+        .logout-btn {
+            background-color: #dc3545; /* red */
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            text-decoration: none;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        .logout-btn:hover {
+            background-color: #c82333;
+        }
+
     </style>
 </head>
 <body>
@@ -95,10 +111,14 @@
     <c:if test="${not empty message}">
         <div class="message">${message}</div>
     </c:if>
-
-    <div class="top-bar">
+<div class="top-bar">
+    <!-- Left: Add Product button -->
+    <div>
         <a href="${pageContext.request.contextPath}/product/add" class="btn">Add Product</a>
+    </div>
 
+    <!-- Center: Category filter -->
+    <div>
         <form action="${pageContext.request.contextPath}/product/list" method="get">
             <label>Filter by Category: </label>
             <select name="type" onchange="this.form.submit()">
@@ -111,6 +131,15 @@
             </select>
         </form>
     </div>
+
+    <!-- Right: Welcome + Logout -->
+    <div>
+        <c:if test="${not empty sessionScope.loggedInUser}">
+            <span style="margin-right:10px;">Welcome, ${sessionScope.loggedInUser.username}!</span>
+        </c:if>
+        <a href="${pageContext.request.contextPath}/user/logout" class="btn logout-btn">Logout</a>
+    </div>
+</div>
 
     <table>
         <thead>

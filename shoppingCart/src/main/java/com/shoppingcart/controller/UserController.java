@@ -65,12 +65,16 @@ public class UserController {
     // ---------------- LOGIN PAGE ----------------
     @GetMapping("/login")
     public String showLoginForm(@RequestParam(value = "error", required = false) String error,
+                                @RequestParam(value = "logout", required = false) String logout,
                                 Model model) {
         if (error != null) {
             model.addAttribute("errorMsg", "Invalid username or password");
         }
+        if (logout != null) {
+            model.addAttribute("msg", "You have been logged out successfully");
+        }
 
-        return "redirect:/user/login";
+        return "user_login";
     }
 
 

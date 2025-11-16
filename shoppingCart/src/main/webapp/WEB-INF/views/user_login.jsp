@@ -70,6 +70,9 @@
     <c:if test="${not empty message}">
         <div class="alert alert-success">${message}</div>
     </c:if>
+    <c:if test="${not empty msg}">
+        <div class="alert alert-success">${msg}</div>
+    </c:if>
     <form action="${pageContext.request.contextPath}/user/login" method="post">
 
          <label>Email</label>
